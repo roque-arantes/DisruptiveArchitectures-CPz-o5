@@ -14,16 +14,10 @@ from rag import buscar_trechos, montar_contexto
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-        "http://localhost:8001",
-        "http://127.0.0.1:8001",
-        "https://arnaldojr.github.io",
-    ],
+    allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 api_key = os.getenv("GEMINI_API_KEY")
