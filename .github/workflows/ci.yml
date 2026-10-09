@@ -4,20 +4,21 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      # pip install mkdocs-material #
-      - run: | 
+      - run: |
           pip install -r requirements.txt
           pip install mkdocs-minify-plugin>=0.2
-       # deploy
       - run: |
           mkdocs gh-deploy --force
-          mkdocs --version
-
